@@ -17,7 +17,7 @@ chrome.commands.onCommand.addListener((command) => {
     const key = `optionalFormat${formatIndex}`;
     chrome.storage.local.get(INITIAL_OPTION_VALUES, function (options) {
       const tab = tabs[0];
-      const title = tab.title || "";
+      const title = tab.title?.replace(/[\u200B-\u200D\uFEFF\u2060\u2061\u2062\u2063\u2064\u206A-\u206F\u2028\u2029\u202A-\u202E\u00AD]/g, '') || "";
       const url = tab.url || "";
       const tabId = tab.id || 0;
 
